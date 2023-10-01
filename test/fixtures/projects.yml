@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_by: 1
+  name: MyString
+  description: MyString
+  status: MyString
+  deadline: 2023-10-01
+  completed: false
+  completed_at: MyString
+  datetime: MyString
+  completed_by: 1
+  coordinator: 1
+
+two:
+  created_by: 1
+  name: MyString
+  description: MyString
+  status: MyString
+  deadline: 2023-10-01
+  completed: false
+  completed_at: MyString
+  datetime: MyString
+  completed_by: 1
+  coordinator: 1
