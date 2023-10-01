@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :updates
   resources :worksheets
   resources :projects
   resources :users
