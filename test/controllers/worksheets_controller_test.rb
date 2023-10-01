@@ -19,7 +19,9 @@ class WorksheetsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Worksheet.count') do
       post worksheets_url,
            params: { worksheet: { completed: @worksheet.completed, completed_at: @worksheet.completed_at,
-                                  completed_by: @worksheet.completed_by, created_by: @worksheet.created_by, deadline: @worksheet.deadline, description: @worksheet.description, task_manager: @worksheet.task_manager, title: @worksheet.title } }
+                                  completed_by: @worksheet.completed_by, created_by: @worksheet.created_by,
+                                  deadline: @worksheet.deadline, description: @worksheet.description,
+                                  task_manager: @worksheet.task_manager, title: @worksheet.title } }
     end
 
     assert_redirected_to worksheet_url(Worksheet.last)
@@ -38,7 +40,9 @@ class WorksheetsControllerTest < ActionDispatch::IntegrationTest
   test 'should update worksheet' do
     patch worksheet_url(@worksheet),
           params: { worksheet: { completed: @worksheet.completed, completed_at: @worksheet.completed_at,
-                                 completed_by: @worksheet.completed_by, created_by: @worksheet.created_by, deadline: @worksheet.deadline, description: @worksheet.description, task_manager: @worksheet.task_manager, title: @worksheet.title } }
+                                 completed_by: @worksheet.completed_by, created_by: @worksheet.created_by,
+                                 deadline: @worksheet.deadline, description: @worksheet.description,
+                                 task_manager: @worksheet.task_manager, title: @worksheet.title } }
     assert_redirected_to worksheet_url(@worksheet)
   end
 

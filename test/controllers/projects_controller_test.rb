@@ -19,7 +19,10 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Project.count') do
       post projects_url,
            params: { project: { completed: @project.completed, completed_at: @project.completed_at,
-                                completed_by: @project.completed_by, coordinator: @project.coordinator, created_by: @project.created_by, datetime: @project.datetime, deadline: @project.deadline, description: @project.description, name: @project.name, status: @project.status } }
+                                completed_by: @project.completed_by, coordinator: @project.coordinator,
+                                created_by: @project.created_by, datetime: @project.datetime,
+                                deadline: @project.deadline, description: @project.description,
+                                name: @project.name, status: @project.status } }
     end
 
     assert_redirected_to project_url(Project.last)
@@ -38,7 +41,10 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   test 'should update project' do
     patch project_url(@project),
           params: { project: { completed: @project.completed, completed_at: @project.completed_at,
-                               completed_by: @project.completed_by, coordinator: @project.coordinator, created_by: @project.created_by, datetime: @project.datetime, deadline: @project.deadline, description: @project.description, name: @project.name, status: @project.status } }
+                               completed_by: @project.completed_by, coordinator: @project.coordinator,
+                               created_by: @project.created_by, datetime: @project.datetime,
+                               deadline: @project.deadline, description: @project.description,
+                               name: @project.name, status: @project.status } }
     assert_redirected_to project_url(@project)
   end
 
