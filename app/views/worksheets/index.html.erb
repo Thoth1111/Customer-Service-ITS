@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Worksheets</h1>
+
+<div id="worksheets">
+  <% @worksheets.each do |worksheet| %>
+    <%= render worksheet %>
+    <p>
+      <%= link_to "Show this worksheet", worksheet %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New worksheet", new_worksheet_path %>
