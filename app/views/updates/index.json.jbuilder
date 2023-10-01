@@ -1,1 +1,1 @@
-json.array! @updates, partial: "updates/update", as: :update
+json.array! @updates, partial: 'updates/update', as: :update

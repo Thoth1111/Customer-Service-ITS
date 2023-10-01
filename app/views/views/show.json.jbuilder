@@ -1,1 +1,1 @@
-json.partial! "views/view", view: @view
+json.partial! 'views/view', view: @view

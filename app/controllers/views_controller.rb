@@ -1,5 +1,5 @@
 class ViewsController < ApplicationController
-  before_action :set_view, only: %i[ show edit update destroy ]
+  before_action :set_view, only: %i[show edit update destroy]
 
   # GET /views or /views.json
   def index
@@ -7,8 +7,7 @@ class ViewsController < ApplicationController
   end
 
   # GET /views/1 or /views/1.json
-  def show
-  end
+  def show; end
 
   # GET /views/new
   def new
@@ -16,8 +15,7 @@ class ViewsController < ApplicationController
   end
 
   # GET /views/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /views or /views.json
   def create
@@ -25,7 +23,7 @@ class ViewsController < ApplicationController
 
     respond_to do |format|
       if @view.save
-        format.html { redirect_to view_url(@view), notice: "View was successfully created." }
+        format.html { redirect_to view_url(@view), notice: 'View was successfully created.' }
         format.json { render :show, status: :created, location: @view }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class ViewsController < ApplicationController
   def update
     respond_to do |format|
       if @view.update(view_params)
-        format.html { redirect_to view_url(@view), notice: "View was successfully updated." }
+        format.html { redirect_to view_url(@view), notice: 'View was successfully updated.' }
         format.json { render :show, status: :ok, location: @view }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +50,20 @@ class ViewsController < ApplicationController
     @view.destroy
 
     respond_to do |format|
-      format.html { redirect_to views_url, notice: "View was successfully destroyed." }
+      format.html { redirect_to views_url, notice: 'View was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_view
-      @view = View.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def view_params
-      params.require(:view).permit(:entity_type, :entity_id, :user_id, :view_time)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_view
+    @view = View.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def view_params
+    params.require(:view).permit(:entity_type, :entity_id, :user_id, :view_time)
+  end
 end

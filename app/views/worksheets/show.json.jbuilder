@@ -1,1 +1,1 @@
-json.partial! "worksheets/worksheet", worksheet: @worksheet
+json.partial! 'worksheets/worksheet', worksheet: @worksheet
