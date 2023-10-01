@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_by: 1
+  title: MyString
+  description: MyString
+  task_manager: 1
+  deadline: 2023-10-01
+  completed: false
+  completed_at: 2023-10-01 08:49:26
+  completed_by: 1
+
+two:
+  created_by: 1
+  title: MyString
+  description: MyString
+  task_manager: 1
+  deadline: 2023-10-01
+  completed: false
+  completed_at: 2023-10-01 08:49:26
+  completed_by: 1

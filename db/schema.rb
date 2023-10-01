@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_054550) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_01_054926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_054550) do
     t.string "avatar"
     t.string "phone_num"
     t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "worksheets", force: :cascade do |t|
+    t.integer "created_by"
+    t.string "title"
+    t.string "description"
+    t.integer "task_manager"
+    t.date "deadline"
+    t.boolean "completed"
+    t.datetime "completed_at"
+    t.integer "completed_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
