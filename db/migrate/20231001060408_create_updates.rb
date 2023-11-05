@@ -8,6 +8,8 @@ class CreateUpdates < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :updates, :updatable_id
+
+    add_index :updates, [:updatable_id, :updatable_type]
+    add_foreign_key :updates, :users, column: :updated_by
   end
 end
