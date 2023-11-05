@@ -8,5 +8,8 @@ class CreateViews < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_foreign_key :views, :users, column: :user_id
+    add_index :views, [:entity_type, :entity_id]
   end
 end

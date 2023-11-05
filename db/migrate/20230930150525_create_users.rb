@@ -3,10 +3,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       t.string :name
       t.string :email
-      t.string :role
-      t.string :avatar
-      t.string :phone_num
-      t.string :status
+      t.string :role #Role can be admin, user, team_lead, task_manager, coordinator
+      t.string :avatar, null: true
+      t.string :phone, null: true
 
       t.timestamps
     end
