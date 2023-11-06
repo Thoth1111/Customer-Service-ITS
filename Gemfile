@@ -36,6 +36,12 @@ gem 'dotenv-rails'
 # Use devise for authentication
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+# Use omniauth for authentication
+gem 'omniauth', '~> 2.1', '>= 2.1.1'
+
+# Use Bootstrap for styling
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
