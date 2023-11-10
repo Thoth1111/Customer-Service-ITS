@@ -42,6 +42,9 @@ gem 'omniauth', '~> 2.1', '>= 2.1.1'
 # Use Bootstrap for styling
 gem 'bootstrap', '~> 5.3', '>= 5.3.2'
 
+# Use letter_opener for email previews
+gem 'letter_opener', '~> 1.8', '>= 1.8.1', group: :development
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -58,7 +61,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
