@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_05_195721) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "role"
+    t.string "role", default: "user"
     t.string "avatar"
     t.string "phone"
     t.datetime "created_at", null: false
