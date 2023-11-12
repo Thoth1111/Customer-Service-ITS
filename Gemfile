@@ -30,6 +30,21 @@ gem 'jbuilder'
 # Use rubocop for linters
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+# use dotenv for environment variables
+gem 'dotenv-rails'
+
+# Use devise for authentication
+gem 'devise', '~> 4.9', '>= 4.9.2'
+
+# Use omniauth for authentication
+gem 'omniauth', '~> 2.1', '>= 2.1.1'
+
+# Use Bootstrap for styling
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
+
+# Use letter_opener for email previews
+gem 'letter_opener', '~> 1.8', '>= 1.8.1', group: :development
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -46,7 +61,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -54,7 +69,6 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'dotenv-rails'
 end
 
 group :development do
