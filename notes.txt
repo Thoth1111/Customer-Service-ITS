@@ -1,0 +1,1 @@
+How I installed and configured bootstrap for Rails 7: https://www.linkedin.com/pulse/rails-7-bootstrap-52-importmap-md-habibur-rahman-habib
