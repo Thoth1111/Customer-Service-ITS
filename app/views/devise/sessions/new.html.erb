@@ -1,26 +1,47 @@
-<h2>Log in</h2>
+<section class="vh-100 d-flex align-items-center"  style="background-color: #0C4767;">
+  <div class="container p-5 my-auto w-auto" style="background-color: white; border-radius: 1rem">
+    <h4>Log in</h4>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="form-outline mb-4">
+        <%= f.label :email, class: "form-label" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <div class="form-outline mb-4">
+        <%= f.label :password, class: "form-label" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+      
+      <div class="form-outline mb-4">
+        <% if devise_mapping.rememberable? %>
+          <div class="form-check d-flex justify-content-center gap-1">        
+            <%= f.check_box :remember_me, class: "form-check-input" %>
+            <%= f.label :remember_me, class: "form-check-label" %>
+          </div>
+        <% end %> 
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div>
+        <%= f.submit "Log in", class: "btn btn-primary btn-block mb-4" %>
+      </div>
+    <% end %>
+
+    <div class="d-flex justify-content-center gap-3">
+      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</section>
 
-<%= render "devise/shared/links" %>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
