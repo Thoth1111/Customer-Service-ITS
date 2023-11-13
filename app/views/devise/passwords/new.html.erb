@@ -1,16 +1,21 @@
-<h2>Forgot your password?</h2>
+<section class="vh-100 d-flex align-items-center"  style="background-color: #0C4767;">
+  <div class="container p-5 my-auto w-auto" style="background-color: white; border-radius: 1rem">
+    <h4>Forgot your password?</h4>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="form-outline mb-4">
+        <%= f.label :email, class: "form-label" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <div>
+        <%= f.submit "Send Reset Instructions", class: "btn btn-primary btn-block mb-4" %>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-center gap-3">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>
