@@ -271,7 +271,17 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], { provider_ignores_state: true }
+  Rails.application.config.middleware.use OmniAuth::Builder do 
+    OmniAuth.config.allowed_request_methods = [:get, :post]
+
+    provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+      {
+      redirect_uri: 'http://localhost:3000/users/auth/google_oauth2/callback',
+      scope: 'email,profile'
+      }
+  end
+  
+  # config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
