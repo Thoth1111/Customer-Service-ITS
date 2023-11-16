@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  devise_scope :user do
+    get '/users/auth/google_oauth2', to: 'users/omniauth_callbacks#passthru'
+    get '/users/auth/google_oauth2/callback', to: 'users/omniauth_callbacks#google_oauth2'
+  end  
+
   root 'home#index'
 
   resources :views
