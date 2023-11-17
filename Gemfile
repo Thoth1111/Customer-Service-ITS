@@ -37,7 +37,9 @@ gem 'dotenv-rails'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
 # Use omniauth for authentication
-gem 'omniauth', '~> 2.1', '>= 2.1.1'
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
+gem 'omniauth-rails_csrf_protection'
 
 # Use Bootstrap for styling
 gem 'bootstrap', '~> 5.3', '>= 5.3.2'
