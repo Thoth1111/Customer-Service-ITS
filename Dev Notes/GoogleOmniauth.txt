@@ -2,15 +2,21 @@ This was set up with devise. Pre-installed gems:
     `gem dotenv-rails`
     `gem devise`
 
+----------------------------------------------------------------------------------------------
+
 1. Added and bundle installed these gems:
     `gem 'omniauth', '~> 2.0', '>= 2.0.4'`
     `gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'`
     `gem 'omniauth-rails_csrf_protection'`
 Not entirely certain the `omniauth` gem was required for This
 
+----------------------------------------------------------------------------------------------
+
 2. Created and set up a Google project API (https://console.cloud.google.com).
     `https://youtu.be/CnZnwV38cjo?si=r94GRMR5kFLpdQGX` was a useful resource for this stopped
 Added the credentials i.e GOOGLE_CLIENT_ID & GOOGLE_CLIENT_SECRET to my .env file
+
+----------------------------------------------------------------------------------------------
 
 3. Added the following omniauth configuration to the 'config/initializers/devise.rb' file:
     `Rails.application.config.middleware.use OmniAuth::Builder do 
@@ -25,12 +31,16 @@ Added the credentials i.e GOOGLE_CLIENT_ID & GOOGLE_CLIENT_SECRET to my .env fil
 The method used in my application is 'post' since I kept getting a warning of potential CSRF attacks using the 'get' method.
 However, leaving out the 'get' method leads to an error 'Not found. Authentication passthru'
 
+-----------------------------------------------------------------------------------------------
+
 4. Added the scope for the omniauth controller in my routes:
     `devise_for :users, controllers: { 
         omniauth_callbacks: 'users/omniauth_callbacks'
     }`
 Had to run `rails g devise:controllers users` to generate the devise controllers for the users model. This was necessary
 for access to the omniauth_callbacks controller.
+
+----------------------------------------------------------------------------------------------
 
 5. Updated the user model to allow for omniauth, specify the providers and include the method for signing in or creating an account
     `devise: :omniauthable, omniauth_providers: [:google_oauth2]`
@@ -44,8 +54,23 @@ You can instead use percent string syntax `%i[google_oauth2]` in place of the ar
         full_name: data['name'],
         avatar: data['image']
         )
+        # Skip confirmation since Google has already confirmed the email address
+        user.skip_confirmation!
         user
     end`
+An alternative method to the above that achieves the same result is:
+    `def self.from_omniauth(auth)
+        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+            user.email = auth.info.email
+            user.password = Devise.friendly_token(20)
+            user.full_name = auth.info.name
+            user.avatar = auth.info.image
+            # Skip confirmation since Google has already confirmed the email address
+            user.skip_confirmation!
+        end
+    end`
+
+----------------------------------------------------------------------------------------------
 
 6. Updated the omniauth_callbacks controller. Added the line:
     `skip_before_action :verify_authenticity_token, only: [:google_oauth2]`
@@ -71,9 +96,11 @@ at the top of the controller and the following methods:
 The choice to include a private method is option. The same result can be achieved by using `request.env['omniauth.auth']`
 in place of auth.
 
+----------------------------------------------------------------------------------------------
+
 7. Finally updated the devise link in the shared links partial. This is the rendered link/button that initiates the omniauth request:
     `<%- if devise_mapping.omniauthable? %>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, style: "border: none; outline: none" do  %>
+        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, data: {turbo: 'false} style: "border: none; outline: none" do  %>
             <%= image_tag('web_light_rd_ctn.svg', alt: 'Sign in with Google') %>
         <% end %>
     <% end %>`
@@ -83,4 +110,7 @@ This works well since I'm using google_oauth2 as my sole provider. If multiple p
             <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
         <% end %>
     <% end %>`
+Setting the turbo to false in the view helps overcome an authentication error that arises when trying to complete the omniauth registration/sign in.
+
+----------------------------------------------------------------------------------------------
 
