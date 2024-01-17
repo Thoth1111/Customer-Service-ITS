@@ -1,8 +1,8 @@
 class CreateTasks < ActiveRecord::Migration[7.0]
   def change
     create_table :tasks do |t|
-      t.references :TaskGroup, null: true, foreign_key: true
-      t.references :TaskType, null: true, foreign_key: true
+      t.references :task_group, null: true, foreign_key: true
+      t.references :task_type, null: true, foreign_key: true
       t.text :note, null: false
       t.references :created_by, null: false, foreign_key: { to_table: :users }
       t.boolean :is_resolved, null: false, default: false

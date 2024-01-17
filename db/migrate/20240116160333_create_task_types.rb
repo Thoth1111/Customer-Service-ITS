@@ -8,7 +8,7 @@ class CreateTaskTypes < ActiveRecord::Migration[7.0]
       t.datetime :deadline, null: true
       t.datetime :start_date, null: true
       t.datetime :end_date, null: true
-      t.references :statusgroup, null: true, foreign_key: true
+      t.references :status_group, null: true, foreign_key: true
 
       t.timestamps
     end
