@@ -1,0 +1,2 @@
+class StatusGroup < ApplicationRecord
+end

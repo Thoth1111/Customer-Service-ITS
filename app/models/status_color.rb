@@ -1,0 +1,2 @@
+class StatusColor < ApplicationRecord
+end
