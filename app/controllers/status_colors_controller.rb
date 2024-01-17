@@ -1,0 +1,2 @@
+class StatusColorsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+module StatusColorsHelper
+end
