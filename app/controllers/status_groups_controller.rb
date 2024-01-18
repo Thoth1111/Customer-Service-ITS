@@ -1,0 +1,2 @@
+class StatusGroupsController < ApplicationController
+end
