@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_many :memberships
-    has_many :teams, through: :memberships
+    has_many :squads, through: :memberships
     has_many :task_groups
     has_many :tasks
     has_many :notifications
