@@ -5,5 +5,5 @@ class Squad < ApplicationRecord
     has_many :task_types, as: :owner, dependent: :destroy
     has_many :tasks, as: :owner, dependent: :destroy
 
-    validates :name, presence: true, length: { maximum: 50 }, uniqueness: true, message: "Name is required and must be less than 30 characters"
+    validates :name, presence: { message: "Name is required" }, length: { maximum: 50, uniqueness: true, message: "Name must be less than 30 characters" }
 end

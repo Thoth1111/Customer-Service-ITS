@@ -5,5 +5,6 @@ class Task < ApplicationRecord
     has_many :notifications, dependent: :destroy
     has_many :task_views, as: :item, dependent: :destroy
 
-    validates :note, presence: true, length: { maximum: 350 }, message: "Note is required"
+    validates :owner, presence: { message: "Owner(user/squad) is required" }
+    validates :note, presence: { message: "Note is required" }, length: { maximum: 350, message: "Note must be less than 350 characters" }
 end

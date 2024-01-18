@@ -9,5 +9,5 @@ class User < ApplicationRecord
     has_many :task_views, dependent: :destroy
     has_many :status_colors, dependent: :destroy
     
-    validates :name, presence: true, length: { maximum: 50 } message: "Name is required and must be less than 30 characters"
+    validates :name, presence: { message: "Name is required" }, length: { maximum: 50, message: "Name must be less than 50 characters" }
 end
