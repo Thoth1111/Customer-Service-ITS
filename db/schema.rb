@@ -57,11 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_17_102049) do
   end
 
   create_table "status_groups", force: :cascade do |t|
-    t.string "status_1", default: "open", null: false
-    t.string "status_2", default: "closed", null: false
-    t.string "status_3"
-    t.string "status_4"
-    t.string "status_5"
+    t.string "status1", default: "open", null: false
+    t.string "status2", default: "closed", null: false
+    t.string "status3"
+    t.string "status4"
+    t.string "status5"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
