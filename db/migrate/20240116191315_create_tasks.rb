@@ -1,6 +1,7 @@
 class CreateTasks < ActiveRecord::Migration[7.0]
   def change
     create_table :tasks do |t|
+      t.references :owner, polymorphic: true, null: false
       t.references :task_group, null: true, foreign_key: true
       t.references :task_type, null: true, foreign_key: true
       t.text :note, null: false
