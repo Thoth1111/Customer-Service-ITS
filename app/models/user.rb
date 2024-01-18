@@ -1,11 +1,13 @@
 class User < ApplicationRecord
-    has_many :memberships
+    has_many :memberships, dependent: :destroy
     has_many :squads, through: :memberships
-    has_many :task_groups
-    has_many :tasks, through: :task_groups
-    has_many :notifications
-    has_many :task_views
-    has_many :status_colors
+    has_many :task_groups, as: :owner, dependent: :destroy
+    has_many :task_types, as: :owner, dependent: :destroy
+    has_many :tasks, as: :owner, dependent: :destroy
+    has_many :task_views, as: :item, dependent: :destroy
+    has_many :notifications, dependent: :destroy
+    has_many :task_views, dependent: :destroy
+    has_many :status_colors, dependent: :destroy
     
-    validates :name, presence: true, length: { maximum: 30 } message: "Name is required and must be less than 30 characters"
+    validates :name, presence: true, length: { maximum: 50 } message: "Name is required and must be less than 30 characters"
 end
