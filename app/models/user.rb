@@ -1,4 +1,7 @@
-class User < ApplicationRecord
+class User < ApplicationRecord  
+  devise :database_authenticatable, :trackable, :registerable, :timeoutable, :lockable,
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+         
   has_many :memberships, dependent: :destroy
   has_many :squads, through: :memberships
   has_many :task_groups, as: :owner, dependent: :destroy
@@ -11,4 +14,16 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: 'Name is required' },
                    length: { maximum: 50, message: 'Name must be less than 50 characters' }
+  
+  # Check if the user exists with the same auth credentials, if not, create a new user
+  def self.from_omniauth(auth)
+       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+              user.email = auth.info.email
+              user.password = Devise.friendly_token[0, 20]
+              user.name = auth.info.name
+              user.photo = auth.info.image
+              user.uid = auth.uid
+              user.provider = auth.provider
+              # user.skip_confirmation! # Uncomment if using devise confirmable & the provider already confirms email
+  end
 end
