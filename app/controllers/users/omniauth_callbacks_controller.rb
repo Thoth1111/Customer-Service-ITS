@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
@@ -11,8 +9,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
-  def google_oauth2 
-    @user = User.self_from_omniauth(auth)
+  def google_oauth2
+    @user = User.from_omniauth(auth)
     if @user.present?
       sign_out_all_scopes
       flash[:notice] = 'Signed in successfully via Google.'
@@ -20,6 +18,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       flash[:alert] = 'There was a problem signing you in through Google. Please register or try signing in later.'
       redirect_to new_user_registration_url
+    end
   end
 
   # GET|POST /resource/auth/twitter
