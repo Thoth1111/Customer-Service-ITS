@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Status groups</h1>
+
+<div id="status_groups">
+  <% @status_groups.each do |status_group| %>
+    <%= render status_group %>
+    <p>
+      <%= link_to "Show this status group", status_group %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New status group", new_status_group_path %>

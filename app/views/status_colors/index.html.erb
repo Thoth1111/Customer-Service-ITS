@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Status colors</h1>
+
+<div id="status_colors">
+  <% @status_colors.each do |status_color| %>
+    <%= render status_color %>
+    <p>
+      <%= link_to "Show this status color", status_color %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New status color", new_status_color_path %>

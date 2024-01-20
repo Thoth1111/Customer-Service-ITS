@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Task types</h1>
+
+<div id="task_types">
+  <% @task_types.each do |task_type| %>
+    <%= render task_type %>
+    <p>
+      <%= link_to "Show this task type", task_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New task type", new_task_type_path %>

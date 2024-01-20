@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @squad %>
+
+<div>
+  <%= link_to "Edit this squad", edit_squad_path(@squad) %> |
+  <%= link_to "Back to squads", squads_path %>
+
+  <%= button_to "Destroy this squad", @squad, method: :delete %>
+</div>

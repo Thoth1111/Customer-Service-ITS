@@ -1,0 +1,17 @@
+<%= form_with(model: status_group) do |form| %>
+  <% if status_group.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(status_group.errors.count, "error") %> prohibited this status_group from being saved:</h2>
+
+      <ul>
+        <% status_group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
