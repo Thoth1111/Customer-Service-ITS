@@ -33,6 +33,9 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 # Use devise for authentication
 gem 'devise'
 
+# Use letter_opener for email previews
+gem 'letter_opener', '~> 1.8', '>= 1.8.1', group: :development
+
 # Use Google OAuth2 for authentication
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
