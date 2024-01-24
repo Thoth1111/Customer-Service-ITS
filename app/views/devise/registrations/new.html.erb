@@ -19,23 +19,23 @@
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="field mt-4">
-              <%= f.label :name, "Full Name", class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+              <%= f.label :name, "Full Name", class: "hidden block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Full Name", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
             </div>
 
             <div class="field mt-4">
-              <%= f.label :email, "Email Address", class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+              <%= f.label :email, "Email Address", class: "hidden block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
             </div>
 
             <div class="field mt-4">
-              <%= f.label :password, "Password", class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-              <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+              <%= f.label :password, "Password", class: "hidden block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters min", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
             </div>
 
             <div class="field mt-4">          
-              <%= f.label :password_confirmation, "Confirm Password", class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+              <%= f.label :password_confirmation, "Confirm Password", class: "hidden block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirm Password", class: "block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
             </div>
             
             <div class="actions mt-6">
