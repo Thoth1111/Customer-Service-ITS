@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>    
-    <link rel="icon" href="<%= asset_url('Ai_book_art3.jpg') %>" />
-    <title> CustomerServiceIts </title>   
+    <link rel="icon" href="<%= asset_url('mogul_logo.png') %>" class="rounded-full" />
+    <title> Mogul</title>   
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>    
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="container min-h-screen relative w-full mx-auto bg-platinum px-4">
+  <body class="container box-content min-h-screen relative w-full bg-platinum">
     <% if user_signed_in? %>
-      <header class="flex justify-between items-center px-4 py-3 bg-p_green">
-        <div class="flex items-center">
-          <%= link_to "CustomerServiceIts", root_path, class: "text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" %>
-        </div>
-        <div class="flex items-center">
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-600 dark:text-gray-200 hover:text-gray-500 dark:hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium" %>
-        </div>
-      </header>
+      <div data-controller="navbar" data-action="keyup@window->navbar#closeOnEscape" class="sticky top-0 z-10 h-16">
+        <%= render "layouts/navbar" %>
+      </div>
     <% end %>
     <div class="absolute mx-auto">
       <p class="notice text-center"><%= notice %></p>
       <p class="alert text-center"><%= alert %></p>
     </div>      
-    <%= yield %>
+    <main class="container flex">
+      <% if user_signed_in? %>
+        <%= render "layouts/sidebar" %>
+      <% end %>
+      <%= yield %>
+    </main>
   </body>
 </html>
