@@ -23,8 +23,9 @@
                 </div>
                 <h3 class="mx-2 text-gray-700 dark:text-gray-200 md:hidden"><%= @user.name %></h3>
             </li>
+            <li class="hidden md:block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Account</li>
         <% end %>
-        <% (1..5).each do |i| %>
+        <% (1..4).each do |i| %>
             <li class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Item <%= i %></li>
         <% end %>       
         <li class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"><%= link_to 'Sign out', destroy_user_session_path, data: {turbo_method: :delete} %></li>
