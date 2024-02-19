@@ -16,8 +16,8 @@ class User < ApplicationRecord
                    length: { maximum: 50, message: 'Name must be less than 50 characters' }
 
   validates :password, format: {
-    with: /\A(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}\z/,
-  } 
+    with: /\A(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}\z/
+  }
 
   # Check if the user exists with the same auth credentials, if not, create a new user
   def self.from_omniauth(auth)
