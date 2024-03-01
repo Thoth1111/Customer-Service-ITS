@@ -14,9 +14,11 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        platinum: '#D9D9D9',
-        p_green: '#5A9776',
-        jet: '#353535'
+        'platinum': '#D9D9D9',
+        'p_green': '#5A9776',
+        'jet': '#353535',
+        'light_window': 'rgba(217, 217, 217, 0.8)',
+        // 'dark_window': '',
       }
     },
   },
