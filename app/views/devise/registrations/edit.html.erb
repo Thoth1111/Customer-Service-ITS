@@ -1,70 +1,64 @@
             
-<div class="w-full px-8 pt-4 my-16 mx-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
-  <div class="block border-b py-2 md:flex md:justify-start md:-mt-16">
-    <img class="object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400" alt="Profile photo" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80">
-    <div class="flex justify-between md:block md:mt-16 md:mx-8">
-      <div>
-        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 md:ml-4"><%= @user.name %></h2>
-        <p class="text-sm font-medium text-gray-600 dark:text-gray-300 md:ml-4"><%= @user.email %></p>
+<div data-controller="account" class="w-full md:w-full lg:w-1/2 px-8 pt-4 my-16 mx-auto bg-white rounded-lg shadow-lg dark:bg-gray-800">
+  <div class="flex md:justify-between border-b py-2 md:-mt-16">
+    <div class="flex justify-center md:justify-between items-center">
+      <div class="relative">
+        <img class="object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400" alt="Profile photo" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80">
+        <i class="fe fe-camera text-xs absolute bottom-0 left-14 md:left-20 text-gray-800 px-1 bg-light_window rounded-full cursor-pointer"></i>
       </div>
-      <div class="md:hidden">
-        <i class="fe fe-edit text-2xl cursor-pointer mx-2 text-gray-600 dark:text-gray-300"></i>
+      <div class="mt-2 ml-4 md:mt-14">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200"><%= @user.name %></h2>
+        <p class="text-sm font-medium text-gray-600 dark:text-gray-300"><%= @user.email %></p>
+      </div>
+      <div data-action="click->account#showFields" data-account-target="activeField" class="ml-14 md:hidden cursor-pointer">
+        <i class="fe fe-edit text-2xl mx-2 text-gray-600 dark:text-gray-300"></i>
+      </div>
+      <div data-action="click->account#hideFields" data-account-target="hiddenField" class="hidden ml-14 md:hidden cursor-pointer">
+        <i class="fe fe-close text-3xl text-gray-600 dark:text-gray-300"></i>
       </div>
     </div>
-    <div class="hidden md:flex items-center cursor-pointer md:mt-16">
-      <i class="fe fe-edit text-2xl mx-2 text-gray-600 dark:text-gray-300"></i>
-      <p class="">Edit</p>
+    <div  class="hidden md:block md:mt-16 items-center cursor-pointer">
+      <p data-action="click->account#showFields" data-account-target="activeField" class="">Edit</p>
+      <p data-action="click->account#hideFields" data-account-target="hiddenField" class="hidden">Cancel</p>
     </div>
   </div>
-  <div class="md:flex justify-between py-4">
-    <div class="mt-6">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="hidden field">
-          <%= f.label :name, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+  <div class="mb-6">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-2 mt-6">
+        <div data-account-target="hiddenField" class="col-span-1 row-span-1 hidden field mt-2">
+          <%= f.label :name, class: "block mb-1 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "w-full block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
         </div>
 
-        <div class="hidden field mt-4">
-          <%= f.label :email, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+        <div data-account-target="hiddenField" class="hidden field mt-2">
+            <%= f.label :email, class: "block mb-1 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
         </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="hidden field mt-4">
+      
+        <div data-account-target="hiddenField" class="hidden field mt-2">
           <%= f.label :password, class: "block mb-1 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters min", class: "w-full block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
           <i class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">(leave blank if you don't want to change it)</i>
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters min", class: "block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
         </div>
 
-        <div class="hidden field mt-4">
-          <%= f.label :password_confirmation, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+        <div data-account-target="hiddenField" class="hidden field mt-2">
+          <%= f.label :password_confirmation, class: "block mb-1 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
         </div>
-
-        <div class="hidden field">
-          <%= f.label :current_password, class: "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" %>
-          <%= f.password_field :current_password, autocomplete: "current-password", class: "block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+  
+        <div data-account-target="hiddenField" class="hidden field mt-2">
+          <%= f.label :current_password, class: "block mb-1 text-sm font-medium text-gray-600 dark:text-gray-200" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "w-full block px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
         </div>
-
-        <div class="hidden actions flex mt-4">
-          <%= f.submit "Update", class: "px-2 py-2 mr-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" %>
-          <button data-action="" class="px-2 py-2 ml-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">Cancel</button>
-        </div>
-      <% end %>
-      <%= button_to "Delete Account", registration_path(resource_name), class: "mt-4 px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-    </div>
-    <div class="px-4 border-r"></div>
-    <div class="flex justify-around mt-4">
-      <div>
-        <div class="flex justify-end mt-4">
-          <a href="#" class="text-lg font-medium text-blue-600 dark:text-blue-300" tabindex="0" role="link">John Doe</a>
+        
+        <div data-account-target="hiddenField" class="hidden actions mt-2">
+          <%= f.submit "Update", class: "mt-6 px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" %>
         </div>
       </div>
+    <% end %>
+    <div data-account-target="hiddenField" class="hidden mt-8">
+      <%= button_to "Delete Account", registration_path(resource_name), class: "px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-900 rounded-lg hover:bg-red-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
     </div>
-  </div>
+  </div>    
 </div>
