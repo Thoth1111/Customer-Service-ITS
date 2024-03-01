@@ -41,7 +41,7 @@ gem 'omniauth-rails_csrf_protection'
 gem 'feathericon-rails'
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -66,11 +66,15 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'letter_opener', '~> 1.8', '>= 1.8.1'
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+
+  #Use hotwire-livereload for live reloading 
+  gem 'hotwire-livereload', '~> 1.3', '>= 1.3.1'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
