@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_085836) do
   create_table "squads", force: :cascade do |t|
     t.string "name"
     t.string "logo"
+    t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -137,6 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_20_085836) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "photo"
+    t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
