@@ -18,7 +18,6 @@ module.exports = {
         'p_green': '#5A9776',
         'jet': '#353535',
         'light_window': 'rgba(217, 217, 217, 0.8)',
-        // 'dark_window': '',
       }
     },
   },
