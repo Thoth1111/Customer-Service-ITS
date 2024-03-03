@@ -57,8 +57,26 @@
         </div>
       </div>
     <% end %>
-    <div data-account-target="hiddenField" class="hidden mt-8">
-      <%= button_to "Delete Account", registration_path(resource_name), class: "px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-900 rounded-lg hover:bg-red-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+    <div data-controller="dialog">
+      <button data-action="click->dialog#openAccountDialog" data-account-target="hiddenField" class="hidden mt-8 px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-900 rounded-lg hover:bg-red-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">Delete Account</button>
+      <div data-action="click->dialog#clickOutside">
+        <dialog data-dialog-target="accountDialog" class="rounded-lg">
+          <div class="p-4">
+            <p class=" font-semibold">Are you sure you want to delete your account?</p> 
+            <p class="">This action cannot be undone.</p>
+            <form>
+              <div class="mt-4">
+                <label for="password" class="hidden">Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Current Password" w-full block px-4 my-6 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300>
+              </div>
+              <div class="flex justify-between items-center">
+                <%= button_to "Delete", registration_path(resource_name), class: "mt-6 mr-8 px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-900 rounded-lg hover:bg-red-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+                <button formmethod="dialog" class="mt-6 px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </dialog>
+      </div> 
     </div>
   </div>    
 </div>
