@@ -11,6 +11,11 @@
   }
 }
 
+dialog::backdrop {
+  background-color: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(5px);
+}
+
 /*
 
 @layer components {
