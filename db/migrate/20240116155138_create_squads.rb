@@ -4,6 +4,7 @@ class CreateSquads < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :logo, null: true
       t.boolean :deleted, null: false, default: false
+      t.datetime :deleted_at, null: true
 
       t.timestamps
     end
