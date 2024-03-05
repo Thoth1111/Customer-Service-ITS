@@ -17,10 +17,14 @@
       <div data-controller="navbar" data-action="keyup@window->navbar#closeOnEscape" class="sticky top-0 z-10 h-16">
         <%= render "layouts/navbar" %>
       </div>
-    <% end %>
-    <div class="absolute mx-auto">
-      <p class="notice text-center"><%= notice %></p>
-      <p class="alert text-center"><%= alert %></p>
+    <% end %> 
+    <div class="absolute text center w-full mx-auto text-center z-10">
+      <p class="notice mt-2 font-semibold w-fit text-sm text-green-500 dark:text-green-400">
+        <%= notice %>
+      </p>
+      <p class="alert mt-2 font-semibold w-fit text-sm text-red-500 dark:text-red-400">
+        <%= alert %>
+      </p>
     </div>      
     <main class="container flex">
       <% if user_signed_in? %>
