@@ -67,7 +67,7 @@
             <%= form_with(model: current_user, url: registration_path(current_user), method: :delete) do |f| %>
               <div class="mt-4">
                 <%= f.label :password, "Current Password", class: "hidden" %>
-                <%= f.password_field :password, autocomplete: "password", placeholder: "Enter Current Password", class: "w-full block px-4 my-6 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" %>
+                <%= f.password_field :password, autocomplete: "password", placeholder: "Enter Current Password", class: "w-full block px-4 my-6 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300", name: "user[password]" %>
               </div>
               <div class="flex justify-between items-center">
                 <%= f.submit "Delete Account", class: "mt-6 mr-8 px-2 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-900 rounded-lg hover:bg-red-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50" %>
