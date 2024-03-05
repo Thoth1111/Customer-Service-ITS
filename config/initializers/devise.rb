@@ -24,13 +24,13 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'support@mogul'
   config.omniauth :google_oauth2, 
     Rails.application.credentials.dig(:google_client_id), 
     Rails.application.credentials.dig(:google_client_secret)
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'CustomDeviseMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
