@@ -24,11 +24,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    if current_user.valid_password?(params[:password])
-      current_user.update(deleted: true)
-      current_user.lock_access!
-      sign_out(current_user)
-      redirect_to root_path, notice: "Your Account has been deleted"
+    if current_user.valid_password?(params[:user][:password])
+      lock_and_delete(current_user)
+      redirect_to root_path, notice: "Your Account has been scheduled for deletion"
     else
       redirect_to edit_user_registration_path, alert: "Incorrect password, please try again"
     end
@@ -41,9 +39,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # removing all OAuth session data.
   # def cancel
   #   super
-  # end
+  # end  
 
   # protected
+
+  def lock_and_delete(user)
+    user.update(deleted: true)
+    user.lock_access!
+    sign_out(user)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
