@@ -1,0 +1,14 @@
+<p>Hello <%= @resource.name %>,</p>
+
+<p>Your account has been temporarily locked and scheduled for deletion, as per your request. Your account and associated data will be permanently erased in 30 days.</p>
+
+<p>To unlock and reactivate your account within this 30-day window, please click the link below:</p>
+
+<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+
+<p>If you have any concerns, require further assistance, or would like to give us some feedback, please contact us at <%= mail_to "alwyn@yopmail.com" %>.</p>
+
+<p>Thank you for choosing Mogul.</p>
+
+<p>Best regards,</p>
+<p>The Mogul Team</p>
