@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable, :confirmable, :registerable, :timeoutable, :lockable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  before_update :set_deleted_at
+
   has_many :memberships, dependent: :destroy
   has_many :squads, through: :memberships
   has_many :task_groups, as: :owner, dependent: :destroy
@@ -29,6 +31,18 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.provider = auth.provider
       user.skip_confirmation! # Uncomment if using devise confirmable & the provider already confirms email
+    end
+  end
+
+  private
+
+  def set_deleted_at
+    if self.deleted_changed? && self.deleted
+      self.deleted_at = Time.current
+    elsif !self.deleted_changed? && self.deleted
+      self.deleted_at ||= Time.current
+    else
+      self.deleted_at = nil
     end
   end
 end
