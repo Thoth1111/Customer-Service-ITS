@@ -7,9 +7,20 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    user = User.find_by(email: params[:user][:email])
+    if user && user.valid_password?(params[:user][:password])
+      if user.deleted && user.deleted_at < 30.days.ago
+        redirect_to new_user_session_path, alert: "Your account does not exist"
+      else       
+        user.reactivate_account
+        sign_in(user)
+        redirect_to root_path       
+      end
+    else
+      super
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
