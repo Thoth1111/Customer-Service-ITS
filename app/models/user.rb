@@ -33,9 +33,9 @@ class User < ApplicationRecord
   end
 
   def reactivate_account
-    if self.deleted && self.deleted_at >= 30.days.ago && !self.unlock_token
-      self.update(deleted: false, deleted_at: nil)
-      UserMailer.with(user: self).account_reactivated(self).deliver_later
-    end
+    return unless deleted && deleted_at >= 30.days.ago && !unlock_token
+
+    update(deleted: false, deleted_at: nil)
+    UserMailer.with(user: self).account_reactivated(self).deliver_later
   end
 end
