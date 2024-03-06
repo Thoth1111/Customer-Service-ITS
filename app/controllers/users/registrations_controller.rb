@@ -44,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def lock_and_delete(user)
-    user.update(deleted: true)
+    user.update(deleted: true, deleted_at: Time.current)
     user.lock_access!
     sign_out(user)
   end
