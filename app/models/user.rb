@@ -2,8 +2,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable, :confirmable, :registerable, :timeoutable, :lockable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  before_update :set_deleted_at
-
   has_many :memberships, dependent: :destroy
   has_many :squads, through: :memberships
   has_many :task_groups, as: :owner, dependent: :destroy
@@ -34,15 +32,10 @@ class User < ApplicationRecord
     end
   end
 
-  private
-
-  def set_deleted_at
-    if self.deleted_changed? && self.deleted
-      self.deleted_at = Time.current
-    elsif !self.deleted_changed? && self.deleted
-      self.deleted_at ||= Time.current
-    else
-      self.deleted_at = nil
+  def reactivate_account
+    if self.deleted && self.deleted_at >= 30.days.ago && !self.unlock_token
+      self.update(deleted: false, deleted_at: nil)
+      UserMailer.with(user: self).account_reactivated(self).deliver_later
     end
   end
 end
