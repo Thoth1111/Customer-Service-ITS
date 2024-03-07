@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable, :confirmable, :registerable, :timeoutable, :lockable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
+  include ImageUploader::Attachment(:avatar)
+
   has_many :memberships, dependent: :destroy
   has_many :squads, through: :memberships
   has_many :task_groups, as: :owner, dependent: :destroy
