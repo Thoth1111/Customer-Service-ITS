@@ -6,7 +6,13 @@
         <div data-action="click->navbar#toggle" class="flex items-center cursor-pointer">
             <h3 class="hidden md:block mx-2 text-gray-700 dark:text-gray-200"><%= @user.name %></h3>
             <div class="hidden md:block w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" class="object-cover w-full h-full" alt="avatar">
+                <% if !@user.avatar_url && !@user.photo %>
+                    <%= image_tag "profile_default.png", class: "object-cover w-full h-full" %>
+                <% elsif @user.photo %>
+                    <%= image_tag @user.photo, class: "object-cover w-full h-full" if @user.photo %>
+                <% else %>
+                    <%= image_tag @user.avatar_url, class: "object-cover w-full h-full" if @user.avatar %>
+                <% end %>
             </div>
         </div>
         <button data-action="navbar#toggle" class="relative md:hidden">
