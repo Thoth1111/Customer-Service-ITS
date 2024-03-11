@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable, :confirmable, :registerable, :timeoutable, :lockable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  include ImageUploader::Attachment(:avatar)
+  include AvatarUploader::Attachment(:avatar)
 
   has_many :memberships, dependent: :destroy
   has_many :squads, through: :memberships
@@ -16,10 +16,8 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: 'Name is required' },
                    length: { maximum: 50, message: 'Name must be less than 50 characters' }
-
-  validates :password, format: {
-    with: /\A(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}\z/
-  }
+  
+  validates :password, custom_password: true, if: :password_required?
 
   # Check if the user exists with the same auth credentials, if not, create a new user
   def self.from_omniauth(auth)
@@ -39,5 +37,12 @@ class User < ApplicationRecord
 
     update(deleted: false, deleted_at: nil)
     UserMailer.with(user: self).account_reactivated(self).deliver_later
+  end
+
+  private
+
+  def password_required?
+    return false if action = :update && password.blank?
+    super
   end
 end
