@@ -4,11 +4,11 @@
     <div class="flex justify-center md:justify-between items-center">
       <div class="relative">
         <% if !@user.avatar_url && !@user.photo %>
-        <%= image_tag "profile_default.png", class: "object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400" %>
+        <%= image_tag "profile_default.png", class: "object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400", alt: "user avatar" %>
         <% elsif @user.photo %>
-          <%= image_tag @user.photo, class: "object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400" if @user.photo %>
+          <%= image_tag @user.photo, class: "object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400", alt: "user avatar" %>
         <% else %>
-          <%= image_tag @user.avatar_url, class: "object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400" if @user.avatar %>
+          <%= image_tag @user.avatar_url, class: "object-cover w-20 h-20 md:h-28 md:w-28 border-2 border-gray-400 rounded-full dark:border-blue-400", alt: "user avatar" if @user.avatar %>
         <% end %>
       </div>
       <div class="mt-2 ml-4 md:mt-14">
