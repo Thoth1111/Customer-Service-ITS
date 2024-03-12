@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: 'Name is required' },
                    length: { maximum: 50, message: 'Name must be less than 50 characters' }
-  
+
   validates :password, custom_password: true, if: :password_required?
 
   # Check if the user exists with the same auth credentials, if not, create a new user
@@ -42,7 +42,8 @@ class User < ApplicationRecord
   private
 
   def password_required?
-    return false if action = :update && password.blank?
+    return false if action == 'update' && password.blank?
+
     super
   end
 end
