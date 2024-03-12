@@ -7,31 +7,47 @@
             <h3 class="hidden md:block mx-2 text-gray-700 dark:text-gray-200"><%= @user.name %></h3>
             <div class="hidden md:block w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                 <% if !@user.avatar_url && !@user.photo %>
-                    <%= image_tag "profile_default.png", class: "object-cover w-full h-full" %>
+                    <%= image_tag "profile_default.png", class: "object-cover w-full h-full", alt: "user avatar" %>
                 <% elsif @user.photo %>
-                    <%= image_tag @user.photo, class: "object-cover w-full h-full" if @user.photo %>
+                    <%= image_tag @user.photo, class: "object-cover w-full h-full", alt: "user avatar" %>
                 <% else %>
-                    <%= image_tag @user.avatar_url, class: "object-cover w-full h-full" if @user.avatar %>
+                    <%= image_tag @user.avatar_url, class: "object-cover w-full h-full", alt: "user avatar" if @user.avatar %>
                 <% end %>
             </div>
         </div>
-        <button data-action="navbar#toggle" class="relative md:hidden">
+        <button data-action="click->navbar#toggle" class="relative md:hidden">
             <i class="fe fe-bar text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none cursor-pointer" style="font-size: 24px;"></i>
         </button>
     </div>
 </nav>
 <nav>
-    <ul data-navbar-target="navMenu" class="hidden absolute text-center right-2 py-2 mt-1 w-1/2 md:w-1/6 h-80 ml-8 overflow-y-auto no-scrollbar bg-white rounded-md shadow-xl dark:bg-gray-800">
+    <ul data-controller="dark-mode" data-navbar-target="navMenu" class="hidden absolute text-center right-2 py-2 mt-1 w-1/2 md:w-1/6 h-80 ml-8 overflow-y-auto no-scrollbar bg-white rounded-md shadow-xl dark:bg-gray-800">
         <%= link_to edit_user_registration_path do %>
-            <li class="flex items-center px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white md:hidden">
+            <li class="flex justify-center items-center px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white md:hidden">
                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full md:hidden">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" class="object-cover w-full h-full" alt="avatar">
+                    <% if !@user.avatar_url && !@user.photo %>
+                        <%= image_tag "profile_default.png", class: "object-cover w-full h-full", alt: "user avatar" %>
+                    <% elsif @user.photo %>
+                        <%= image_tag @user.photo, class: "object-cover w-full h-full", alt: "user avatar" %>
+                    <% else %>
+                        <%= image_tag @user.avatar_url, class: "object-cover w-full h-full", alt: "user avatar" if @user.avatar %>
+                    <% end %>                
                 </div>
                 <h3 class="mx-2 text-gray-700 dark:text-gray-200 md:hidden"><%= @user.name %></h3>
             </li>
             <li class="hidden md:block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Account</li>
         <% end %>
-        <% (1..4).each do |i| %>
+        <li data-action="click->dark-mode#toggleDarkMode" class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white cursor-pointer">
+            <div data-dark-mode-target="lightModeIcon" class="flex items-center justify-center">
+                <i class="fe fe-sunny-o text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" style="font-size: 20px;"></i>
+                <span class="mx-2">Light</span>
+            </div>
+            <div data-dark-mode-target="darkModeIcon" class="hidden flex items-center justify-center">
+                <i class="fe fe-moon text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" style="font-size: 20px;"></i>
+                <span class="mx-2">Dark</span>
+            </div>
+        </li>
+        <% (1..3).each do |i| %>
             <li class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Item <%= i %></li>
         <% end %> 
         <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>      
