@@ -42,7 +42,7 @@ class User < ApplicationRecord
   private
 
   def password_required?
-    return false if 'update' && password.blank?
+    return false if action == 'update' && password.blank?
 
     super
   end
