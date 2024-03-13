@@ -7,8 +7,12 @@ export default class extends Controller {
   initialize() {
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.body.classList.add('dark')
+      this.lightModeIconTarget.classList.remove('hidden')
+      this.darkModeIconTarget.classList.add('hidden')
     } else {
       document.body.classList.remove('dark')
+      this.lightModeIconTarget.classList.add('hidden')
+      this.darkModeIconTarget.classList.remove('hidden')
     }
   }
 
