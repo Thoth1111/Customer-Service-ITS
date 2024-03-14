@@ -1,0 +1,28 @@
+<div class="w-3/4">
+    <div class="flex justify-center items-center gap-4 px-8">
+        <%= link_to root_path(date: @date.prev_month) do %>
+            <i class="fe fe-arrow-left mr-8"></i>
+        <% end %>
+        <h4 class="text-2xl font-semibold">
+            <%= @date.strftime("%b %Y") %>
+        </h4>
+        <%= link_to root_path(date: @date.next_month) do %>
+            <i class="fe fe-arrow-right ml-8"></i>
+        <% end %>
+    </div>
+    <div class="grid grid-cols-7 bg-white dark:bg-gray-800">    
+        <% Date::ABBR_DAYNAMES.rotate.each do |weekday| %>
+            <div class="py-2 text-center border">
+                <%= weekday %>
+            </div>
+        <% end %>
+        <% month_offset(@date).times do %>
+            <div class="border min-h-24"></div>
+        <% end %>
+        <% @date.all_month.each do |day| %>
+            <div class="border min-h-24 p-2 <%= today_class(day) %>">
+                <%= day.strftime("%e") %>
+            </div>
+        <% end %>   
+    </div>
+</div>
