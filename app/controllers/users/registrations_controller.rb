@@ -18,9 +18,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    params[:password].blank? && params[:password_confirmation].blank?
+    super
+  end
 
   # DELETE /resource
   def destroy
