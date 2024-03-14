@@ -40,10 +40,4 @@ class User < ApplicationRecord
   end
 
   private
-
-  def password_required?
-    return false if action == 'update' && password.blank?
-
-    super
-  end
 end
