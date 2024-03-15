@@ -1,14 +1,18 @@
-<div class="w-3/4">
-    <div class="flex justify-center items-center gap-4 px-8">
+<div data-controller="calendar" class="w-3/4">
+    <div class="flex justify-center gap-8 px-8">
         <%= link_to root_path(date: @date.prev_month) do %>
             <i class="fe fe-arrow-left mr-8"></i>
         <% end %>
-        <h4 class="text-2xl font-semibold">
-            <%= @date.strftime("%b %Y") %>
+        <h4 data-calender-target="yearToggler" data-action="click->calendar#showYearSelector" class="flex flex-col items-center text-2xl font-semibold cursor-pointer">
+            <%= @date.strftime("%b %Y") %>            
         </h4>
+        
         <%= link_to root_path(date: @date.next_month) do %>
             <i class="fe fe-arrow-right ml-8"></i>
         <% end %>
+    </div>
+    <div data-calendar-target="yearSelector" class="hidden mx-auto">
+        <%= select_tag :year, options_for_select((@date.year - 5)..(@date.year + 5), @date.year), data: { action: "change->calendar#changeYear", date: @date } %>
     </div>
     <div class="grid grid-cols-7 bg-white dark:bg-gray-800">    
         <% Date::ABBR_DAYNAMES.rotate.each do |weekday| %>
