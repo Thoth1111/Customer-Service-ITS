@@ -38,6 +38,4 @@ class User < ApplicationRecord
     update(deleted: false, deleted_at: nil)
     UserMailer.with(user: self).account_reactivated(self).deliver_later
   end
-
-  private
 end
