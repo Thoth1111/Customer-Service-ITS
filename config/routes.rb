@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "landings#index"
+  root "landings#calendar"
 end
