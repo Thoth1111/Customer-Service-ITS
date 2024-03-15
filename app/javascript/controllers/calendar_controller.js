@@ -4,6 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "yearToggler", "yearSelector"]
   connect() {
+    const date = this.
   }
 
   showYearSelector(){
@@ -12,6 +13,5 @@ export default class extends Controller {
 
   changeYear(e){
     const year = e.target.value;
-    @date = new
   }
 }
