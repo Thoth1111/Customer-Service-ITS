@@ -1,3 +1,5 @@
 <div class="p-4 w-full">
-    <%= render partial: "calendar/month", locals: { date: @date } %>
+    <div data-controller="calendar">
+        <%= render partial: "calendar/month", locals: { date: @date } %>
+    </div>
 </div>
