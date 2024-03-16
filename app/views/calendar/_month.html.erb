@@ -1,12 +1,12 @@
 <div class="w-3/4">
     <div class="flex justify-center gap-8 px-8">
-        <%= link_to root_path(date: @date.prev_month) do %>
+        <%= link_to root_path(date: @date.prev_month), method: :get do %>
             <i class="fe fe-arrow-left mr-8"></i>
         <% end %>
         <h4 data-calendar-target="yearToggler" data-action="click->calendar#toggle" class="flex flex-col items-center text-2xl font-semibold cursor-pointer">
             <%= @date.strftime("%b %Y") %>            
         </h4>       
-        <%= link_to root_path(date: @date.next_month) do %>
+        <%= link_to root_path(date: @date.next_month), method: :get do %>
             <i class="fe fe-arrow-right ml-8"></i>
         <% end %>
     </div>
