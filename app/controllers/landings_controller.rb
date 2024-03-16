@@ -3,6 +3,9 @@ class LandingsController < ApplicationController
   before_action :set_user_date
 
   def calendar
+    if params[:date].present?
+      @date = Date.parse(params[:date])
+    end
   end
 
   def update_date
