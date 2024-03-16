@@ -1,17 +1,25 @@
 import { Controller } from "@hotwired/stimulus"
+import { useClickOutside } from "stimulus-use"
 
 // Connects to data-controller="calendar"
 export default class extends Controller {
-  static targets = [ "yearToggler", "yearSelector"]
+  static targets = [ "yearSelectorContainer" ]
   connect() {
-    const date = this.
+  }
+
+  toggle(){
+    if (this.yearSelectorContainerTarget.classList.contains('hidden')) {
+      this.showYearSelector();
+    } else {
+      this.hideYearSelector();
+    }
   }
 
   showYearSelector(){
-    this.yearSelectorTarget.classList.remove('hidden')
+    this.yearSelectorContainerTarget.classList.remove('hidden');
   }
 
-  changeYear(e){
-    const year = e.target.value;
+  hideYearSelector(){
+    this.yearSelectorContainerTarget.classList.add('hidden');
   }
 }
